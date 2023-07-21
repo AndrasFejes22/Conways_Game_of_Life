@@ -15,6 +15,8 @@ public class GameOfLife extends Application {
     private int numOfRows = 30;
     private int numOfColumns = 30;
 
+    private Thread worker = null;
+
     private Parent createContent() {
         TilePane tilePane = new TilePane();
         tilePane.setPrefColumns(numOfColumns);
@@ -45,6 +47,19 @@ public class GameOfLife extends Application {
         StackPane stackPane = new StackPane(tilePane);
 
         Button startButton = new Button("Start");
+        startButton.setOnAction(event ->{
+            System.out.println("Start button clicked!");
+            if(worker == null){
+                worker = new Thread((new GameEngine(cells)));
+                worker.setDaemon(true);
+                worker.start();
+                startButton.setText("Stop");
+            } else {
+                worker.interrupt();
+                worker = null;
+                startButton.setText("Start");
+            }
+        });
         HBox buttons = new HBox(startButton);
         return new VBox(stackPane, buttons);
     }
