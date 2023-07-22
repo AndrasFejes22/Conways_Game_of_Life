@@ -23,4 +23,9 @@ public class Cell extends Rectangle {
             setFill(Color.WHITE);
         }
     }
+
+    public void reset(){
+        alive = false;
+        setFill(Color.WHITE);
+    }
 }
