@@ -17,7 +17,7 @@ public class GameEngine implements Runnable{
     public void run() {
         while (true){
             System.out.println("Calculating");
-            tick();
+            step();
             // sleep : 0.5 sec
             try {
                 Thread.sleep(500);
@@ -27,7 +27,7 @@ public class GameEngine implements Runnable{
         }
     }
 
-    public void tick() {
+    public void step() {
         // counting
         List<Cell> cellsToUpdate = calculateCellUpdates();
         // UI update

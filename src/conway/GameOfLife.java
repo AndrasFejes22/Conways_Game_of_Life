@@ -74,7 +74,7 @@ public class GameOfLife extends Application {
     }
 
     private void handleStepButton(ActionEvent event) {
-        engine.tick();
+        engine.step();
     }
 
     private void handleRandomButton(ActionEvent event) {
